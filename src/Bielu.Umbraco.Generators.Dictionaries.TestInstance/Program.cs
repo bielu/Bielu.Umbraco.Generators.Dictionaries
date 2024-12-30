@@ -1,3 +1,5 @@
+using Bielu.Umbraco.Generators.Dictionaries.Models;
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 builder.CreateUmbracoBuilder()
