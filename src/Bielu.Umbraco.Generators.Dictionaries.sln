@@ -4,6 +4,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Umbraco.Generators.Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bielu.Umbraco.Generators.Dictionaries.TestInstance", "Bielu.Umbraco.Generators.Dictionaries.TestInstance\Bielu.Umbraco.Generators.Dictionaries.TestInstance.csproj", "{8E24B1C3-D44F-4E4E-8228-030157A6F433}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFiles", "{7399BE36-7FEC-4DC8-B173-52D12E338DA7}"
+	ProjectSection(SolutionItems) = preProject
+		..\version.props = ..\version.props
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

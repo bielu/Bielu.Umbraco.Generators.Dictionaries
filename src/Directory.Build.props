@@ -7,6 +7,10 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <CompilerGeneratedFilesOutputPath>Generated</CompilerGeneratedFilesOutputPath>
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CA1848;CA2254</WarningsNotAsErrors>
+    <RepositoryUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries</RepositoryUrl>
+    <Copyright>Arkadiusz Biel</Copyright>
+    <PackageProjectUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <PropertyGroup>
