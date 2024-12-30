@@ -13,6 +13,10 @@ public class DictionaryModelsBuilderComposer : IComposer
     {
         builder.Services.AddUnique<IDictionaryConstantModelBuilder, DefaultDictionaryConstantModelBuilder>(ServiceLifetime.Transient);
         builder.AddNotificationAsyncHandler<DictionaryItemDeletedNotification, DictionaryNotificationsHandler>()
-            .AddNotificationAsyncHandler<DictionaryItemSavedNotification, DictionaryNotificationsHandler>();
+            .AddNotificationAsyncHandler<DictionaryItemSavedNotification, DictionaryNotificationsHandler>()
+            .AddNotificationAsyncHandler<UmbracoApplicationStartingNotification, DictionaryNotificationsHandler>()
+            .AddNotificationAsyncHandler<UmbracoRequestEndNotification, DictionaryNotificationsHandler>()
+            .AddNotificationAsyncHandler<ContentTypeCacheRefresherNotification, DictionaryNotificationsHandler>()
+            .AddNotificationAsyncHandler<DataTypeCacheRefresherNotification, DictionaryNotificationsHandler>();
     }
 }
