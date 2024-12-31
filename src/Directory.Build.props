@@ -9,6 +9,8 @@
     <WarningsNotAsErrors>$(WarningsNotAsErrors);CA1848;CA2254</WarningsNotAsErrors>
     <RepositoryUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries</RepositoryUrl>
     <Copyright>Arkadiusz Biel</Copyright>
+    <PackageTags>umbraco-marketplace, umbraco, dictionaries, code generator</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/bielu/Bielu.Umbraco.Generators.Dictionaries/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
@@ -20,5 +22,6 @@
   <ItemGroup>
     <Content Include="buildTransitive\**" PackagePath="buildTransitive"/>
     <Content Include="Schema\appsettings-schema.*.json" PackagePath="Schema"/>
+    <None Include="$(MSBuildProjectDirectory)\..\..\README.md" Pack="true" PackagePath="\"/>
   </ItemGroup>
 </Project>

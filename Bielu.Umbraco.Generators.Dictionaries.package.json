@@ -1,0 +1,20 @@
+﻿{
+  "$schema": "https://marketplace.umbraco.com/umbraco-marketplace-schema.json",
+  "AuthorDetails": {
+    "Name": "Arkadiusz Biel",
+    "Description": "",
+    "Url": "https://github.com/bielu/",
+    "SyncContributorsFromRepository": true
+  },
+  "Category": "Developer Tools",
+ "PackageType": "Package",
+  "RelatedPackages": [
+    {
+      "GroupTitle": "Providers",
+      "PackageId": "Bielu.Umbraco.Generators.Dictionaries",
+      "Description": "Constants generator for Umbraco Translation Dictionaries"
+    }
+  ],
+  "Tags": ["Dictionaries", "Contants", "ModelsBuilder", "Umbraco"],
+  "Title": "Bielu Umbraco Generators Dictionaries"
+}

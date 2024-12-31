@@ -3,9 +3,11 @@
 
 # Bielu.Umbraco.Generators.Dictionaries
 This package allows to generated class with access to alias, key (guid) and id (int) of dictionaries.
-By default package is listening to Umbraco Models configuration, which means this generator will only when:
-- ModelsMode is ModelsMode.SourceCodeAuto or ModelsMode.SourceCodeManual
-- It will replace word models in end of path for ModelsDirectory, example umbraco\models will become umbraco\constants, to avoid overriding by ModelsBuilder
+By default package is listening to Umbraco Models configuration:
+- package is enabled only when ModelsMode is ModelsMode.SourceCodeAuto or ModelsMode.SourceCodeManual, there will be no support for InMemoryAuto
+- It will replace word models in end of path for ModelsDirectory, example umbraco\models will become umbraco\constants, to avoid overriding by ModelsBuilder, in case word models is not found it will create file in same folder as ModelsBuilder, and till https://github.com/umbraco/Umbraco-CMS/discussions/17869 is consider I recommend adding "models" to the end of custom path to avoid losing content of this file.
+- It will generate file with name Dictionaries.cs
+- it will generate file with same namespace as ModelsBuilder
 
 Example generated file:
 ```

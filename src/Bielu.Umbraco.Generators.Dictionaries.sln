@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFiles", "SolutionFi
 	ProjectSection(SolutionItems) = preProject
 		..\version.props = ..\version.props
 		Directory.Build.props = Directory.Build.props
+		..\README.md = ..\README.md
+		..\Bielu.Umbraco.Generators.Dictionaries.package.json = ..\Bielu.Umbraco.Generators.Dictionaries.package.json
 	EndProjectSection
 EndProject
 Global
