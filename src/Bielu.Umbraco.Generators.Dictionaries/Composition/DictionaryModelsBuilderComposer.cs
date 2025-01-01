@@ -1,4 +1,5 @@
-﻿using Bielu.Umbraco.Generators.Dictionaries.NotificationHandlers;
+﻿using Bielu.Umbraco.Generators.Dictionaries.Configuration;
+using Bielu.Umbraco.Generators.Dictionaries.NotificationHandlers;
 using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
@@ -11,12 +12,15 @@ public class DictionaryModelsBuilderComposer : IComposer
 {
     public void Compose(IUmbracoBuilder builder)
     {
-        builder.Services.AddUnique<IDictionaryConstantModelBuilder, DefaultDictionaryConstantModelBuilder>(ServiceLifetime.Transient);
+        builder.Services.AddUnique<IDictionaryConstantModelBuilder, DefaultDictionaryConstantModelBuilder>(
+            ServiceLifetime.Transient);
         builder.AddNotificationAsyncHandler<DictionaryItemDeletedNotification, DictionaryNotificationsHandler>()
             .AddNotificationAsyncHandler<DictionaryItemSavedNotification, DictionaryNotificationsHandler>()
             .AddNotificationAsyncHandler<UmbracoApplicationStartingNotification, DictionaryNotificationsHandler>()
             .AddNotificationAsyncHandler<UmbracoRequestEndNotification, DictionaryNotificationsHandler>()
             .AddNotificationAsyncHandler<ContentTypeCacheRefresherNotification, DictionaryNotificationsHandler>()
             .AddNotificationAsyncHandler<DataTypeCacheRefresherNotification, DictionaryNotificationsHandler>();
+        builder.Services.Configure<BieluDictionariesModelsBuilderOptions>(
+            builder.Config.GetSection(BieluDictionariesModelsBuilderOptions.SectionName));
     }
 }

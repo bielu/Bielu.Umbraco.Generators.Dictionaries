@@ -9,7 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="bielu.SchemaGenerator.Core" />
       <PackageReference Include="Umbraco.Cms.Core" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Schema\" />
     </ItemGroup>
 
 </Project>

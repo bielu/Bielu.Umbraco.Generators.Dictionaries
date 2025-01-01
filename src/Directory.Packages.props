@@ -4,11 +4,19 @@
     <CentralPackageTransitivePinningEnabled>false</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
+    <PackageVersion Include="bielu.SchemaGenerator.Build" Version="1.0.3-abcde" />
+    <PackageVersion Include="bielu.SchemaGenerator.Core" Version="1.0.3-abcde" />
     <PackageVersion Include="Examine" Version="3.5.0" />
     <PackageVersion Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
+    <PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageVersion Include="System.Text.Json" Version="8.0.5" />
     <PackageVersion Include="Umbraco.Cms" Version="13.5.2" />
     <PackageVersion Include="Umbraco.Cms.Core" Version="13.5.2" />
     <PackageVersion Include="uSync" Version="13.2.5" />
+    <PackageVersion Include="NJsonSchema" Version="11.1.0" />
+    <PackageVersion Include="NSwag.AspNetCore" Version="14.2.0" />
+    <PackageVersion Include="NSwag.CodeGeneration" Version="14.2.0" />
+    <PackageVersion Include="NSwag.MSBuild" Version="14.2.0" />
+    <PackageVersion Include="CommandLineParser" Version="2.9.1" />
   </ItemGroup>
 </Project>

@@ -8,6 +8,6 @@
   },
   "Category": "Developer Tools",
   "PackageType": "Package",
-  "Tags": ["Dictionaries", "Contants", "ModelsBuilder", "Umbraco"],
+  "Tags": ["Dictionaries", "Constants", "ModelsBuilder", "Umbraco"],
   "Title": "Bielu Umbraco Generators Dictionaries"
 }
