@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 using Bielu.Umbraco.Generators.Dictionaries.Configuration;
+using Bielu.Umbraco.Generators.Dictionaries.Extensions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Umbraco.Cms.Core;
@@ -46,27 +47,29 @@ public class DefaultDictionaryConstantModelBuilder(
             return;
         }
 
-        if (config.CurrentValue.ModelsMode is not ModelsMode.SourceCodeAuto and not ModelsMode.SourceCodeManual)
+        var mbConfig = config.CurrentValue;
+
+        if (mbConfig.ModelsMode is not ModelsMode.SourceCodeAuto and not ModelsMode.SourceCodeManual)
         {
             logger.LogWarning(
                 "ModelsBuilder is not in SourceCodeAuto or SourceCodeManual mode, skipping dictionary model generation");
         }
 
         string? modelsDirectory;
-        modelsDirectory = config.CurrentValue.ModelsDirectoryAbsolute(hostingEnvironment);
+
         if (!string.IsNullOrWhiteSpace(options.ConstantsOutputDirectory))
         {
-            //todo: we should same as ModelsDirectoryAbsolute
-            modelsDirectory = modelsDirectory
-                .Replace(
-                    config.CurrentValue.ModelsDirectory.TrimStart("~/").Replace("/","\\"),
-                    $"{options.ConstantsOutputDirectory.TrimStart("/").Replace("/","\\")}"
-                    );
+            modelsDirectory = options.ConstantsDirectoryAbsolute(mbConfig, hostingEnvironment);
         }
-        else if (modelsDirectory.EndsWith("models", StringComparison.InvariantCultureIgnoreCase))
+        else
         {
-            modelsDirectory = $"{modelsDirectory.TrimEnd("models".ToCharArray())}constants";
+            modelsDirectory = mbConfig.ModelsDirectoryAbsolute(hostingEnvironment);
+            if (modelsDirectory.EndsWith("models", StringComparison.InvariantCultureIgnoreCase))
+            {
+                modelsDirectory = $"{modelsDirectory.TrimEnd("models".ToCharArray())}constants";
+            }
         }
+
 
         if (!Directory.Exists(modelsDirectory))
         {
