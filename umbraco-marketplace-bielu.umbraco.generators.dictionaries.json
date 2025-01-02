@@ -9,5 +9,6 @@
   "Category": "Developer Tools",
   "PackageType": "Package",
   "Tags": ["Dictionaries", "Constants", "ModelsBuilder", "Umbraco"],
-  "Title": "Bielu Umbraco Generators Dictionaries"
+  "Title": "Bielu Umbraco Generators Dictionaries",
+  "Description": "This package allows to generate constants for each of dictioanry items with respect to tree structure"
 }
