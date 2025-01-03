@@ -76,7 +76,7 @@ public class DefaultDictionaryConstantModelBuilder(
             Directory.CreateDirectory(modelsDirectory);
         }
 
-        var dictionaryConstantModelText = await GenerateDictionaryConstantModelText(dictionaryItems);
+        var dictionaryConstantModelText = await GenerateDictionaryConstantModelText(dictionaryItems,options);
 
         var dictionaryConstantModelFilePath =
             Path.Combine(modelsDirectory,
@@ -103,7 +103,8 @@ public class DefaultDictionaryConstantModelBuilder(
             : config.CurrentValue.ModelsNamespace;
     }
 
-    private async Task<string> GenerateDictionaryConstantModelText(IEnumerable<IDictionaryItem> dictionaryItems)
+    private async Task<string> GenerateDictionaryConstantModelText(IEnumerable<IDictionaryItem> dictionaryItems,
+        BieluDictionariesModelsBuilderOptions bieluDictionariesModelsBuilderOptions)
     {
         var options = optionsMonitor?.CurrentValue;
         var dictionaryConstantModelText = new StringBuilder();
@@ -115,7 +116,7 @@ public class DefaultDictionaryConstantModelBuilder(
         dictionaryConstantModelText.AppendLine(CultureInfo.InvariantCulture, $"{{");
         foreach (var dictionaryItem in dictionaryItems)
         {
-            await GenerateDictionaryAsync(dictionaryConstantModelText, dictionaryItem);
+            await GenerateDictionaryAsync(dictionaryConstantModelText, dictionaryItem,bieluDictionariesModelsBuilderOptions);
         }
 
         dictionaryConstantModelText.AppendLine("}");
@@ -161,7 +162,8 @@ public class DefaultDictionaryConstantModelBuilder(
 
     private const string SpacerTemplate = "    ";
 
-    private async Task GenerateDictionaryAsync(StringBuilder stringBuilder, IDictionaryItem dictionary, int lvl = 0)
+    private async Task GenerateDictionaryAsync(StringBuilder stringBuilder, IDictionaryItem dictionary,
+        BieluDictionariesModelsBuilderOptions options, int lvl = 0)
     {
         AppendSpacer(stringBuilder, lvl + 1);
         stringBuilder.AppendLine(CultureInfo.InvariantCulture,
@@ -171,17 +173,24 @@ public class DefaultDictionaryConstantModelBuilder(
         AppendSpacer(stringBuilder, lvl + 2);
         stringBuilder.AppendLine(CultureInfo.InvariantCulture,
             $"public const string Alias = \"{dictionary.ItemKey}\";");
-        AppendSpacer(stringBuilder, lvl + 2);
-        stringBuilder.AppendLine(CultureInfo.InvariantCulture,
-            $"public static readonly Guid Key = new Guid(\"{dictionary.Key}\");");
-        AppendSpacer(stringBuilder, lvl + 2);
-        stringBuilder.AppendLine(CultureInfo.InvariantCulture, $"public const int Id = {dictionary.Id};");
-        AppendSpacer(stringBuilder, lvl + 2);
+        if (options.IncludeGuids)
+        {
+            AppendSpacer(stringBuilder, lvl + 2);
+            stringBuilder.AppendLine(CultureInfo.InvariantCulture,
+                $"public static readonly Guid Key = new Guid(\"{dictionary.Key}\");");
+        }
+        if (options.IncludeIds)
+        {
+            AppendSpacer(stringBuilder, lvl + 2);
+            stringBuilder.AppendLine(CultureInfo.InvariantCulture, $"public const int Id = {dictionary.Id};");
+            AppendSpacer(stringBuilder, lvl + 2);
+        }
+
         stringBuilder.AppendLine(CultureInfo.InvariantCulture, $"//SubDictionaries of level {lvl + 1} (if any)");
 
         foreach (var dictionaryItem in localizationService.GetDictionaryItemChildren(dictionary.Key).ToList())
         {
-            await GenerateDictionaryAsync(stringBuilder, dictionaryItem, lvl + 1);
+            await GenerateDictionaryAsync(stringBuilder, dictionaryItem, options,lvl + 1);
         }
 
         AppendSpacer(stringBuilder, lvl + 1);
